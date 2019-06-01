@@ -1,1 +1,1 @@
-# go_template
+# go_snippets
