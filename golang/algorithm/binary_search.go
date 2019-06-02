@@ -14,7 +14,6 @@ func binarySearch(a []int, target int) int {
 		result = binarySearch(a[:mid], target)
 	case a[mid] < target:
 		result = binarySearch(a[mid+1:], target)
-		result += mid + 1
 	default:
 		result = mid
 	}
