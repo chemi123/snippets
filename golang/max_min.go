@@ -6,7 +6,7 @@ import (
 )
 
 func max(nums ...int) int {
-	max := 0
+	max := math.MinInt32
 	for _, num := range nums {
 		max = int(math.Max(float64(max), float64(num)))
 	}
