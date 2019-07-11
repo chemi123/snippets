@@ -12,6 +12,7 @@ func main() {
 	ctx, cancel := context.WithTimeout(context.Background(), time.Second*1)
 	defer cancel()
 
+	// sender
 	for i := 0; i < 3; i++ {
 		go func(timeout int) {
 			time.Sleep(time.Second * time.Duration(timeout))
@@ -19,6 +20,7 @@ func main() {
 		}(i)
 	}
 
+	// receiver
 	for i := 0; i < 3; i++ {
 		select {
 		case <-ctx.Done():
