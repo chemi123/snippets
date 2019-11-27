@@ -1,52 +1,38 @@
 package main
 
-import (
-	"fmt"
-)
+import "fmt"
 
-func mergeSort(s []int) []int {
-	if len(s) <= 1 {
-		return s
+func mergeSort(nums []int) []int {
+	if len(nums) <= 1 {
+		return nums
 	}
-
-	mid := len(s) / 2
-	left := mergeSort(s[:mid])
-	right := mergeSort(s[mid:])
-
-	return merge(left, right)
+	mid := len(nums) / 2
+	l, r := mergeSort(nums[:mid]), mergeSort(nums[mid:])
+	return merge(l, r)
 }
 
-func merge(left []int, right []int) []int {
-	l, r := 0, 0
-	merge := make([]int, 0, len(left)+len(right))
-	for l < len(left) || r < len(right) {
-		if l < len(left) && r < len(right) {
-			if left[l] <= right[r] {
-				merge = append(merge, left[l])
-				l++
-			} else {
-				merge = append(merge, right[r])
-				r++
-			}
-			continue
+func merge(nums1, nums2 []int) []int {
+	i, j := 0, 0
+	res := make([]int, 0, len(nums1)+len(nums2))
+	for i < len(nums1) && j < len(nums2) {
+		if nums1[i] <= nums2[j] {
+			res = append(res, nums1[i])
+			i++
+		} else {
+			res = append(res, nums2[j])
+			j++
 		}
-
-		if l < len(left) {
-			merge = append(merge, left[l])
-			l++
-			continue
-		}
-
-		// r < len(right)
-		merge = append(merge, right[r])
-		r++
 	}
-
-	return merge
+	if i < len(nums1) {
+		res = append(res, nums1[i:]...)
+	} else if j < len(nums2) {
+		res = append(res, nums2[j:]...)
+	}
+	return res
 }
 
 func main() {
-	s := []int{4, 2, 6, 9, 1, 3, 7, 8, 5}
-	fmt.Println(s)
-	fmt.Println(mergeSort(s))
+	nums := []int{4, 5, 1, 8, 3, 2, 9, 6, 7}
+	fmt.Println(nums)
+	fmt.Println(mergeSort(nums))
 }
