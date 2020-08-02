@@ -1,6 +1,10 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"math/rand"
+	"time"
+)
 
 func mergeSort(nums []int) []int {
 	if len(nums) <= 1 {
@@ -11,28 +15,35 @@ func mergeSort(nums []int) []int {
 	return merge(l, r)
 }
 
-func merge(nums1, nums2 []int) []int {
-	i, j := 0, 0
-	res := make([]int, 0, len(nums1)+len(nums2))
-	for i < len(nums1) && j < len(nums2) {
-		if nums1[i] <= nums2[j] {
-			res = append(res, nums1[i])
-			i++
+func merge(l, r []int) []int {
+	res := make([]int, 0, len(l) + len(r))
+	var left, right int
+	for left < len(l) && right < len(r) {
+		if l[left] < r[right] {
+			res = append(res, l[left])
+			left++
 		} else {
-			res = append(res, nums2[j])
-			j++
+			res = append(res, r[right])
+			right++
 		}
 	}
-	if i < len(nums1) {
-		res = append(res, nums1[i:]...)
-	} else if j < len(nums2) {
-		res = append(res, nums2[j:]...)
+	if left < len(l) {
+		res = append(res, l[left:]...)
+		return res
 	}
+	res = append(res, r[right:]...)
 	return res
 }
 
 func main() {
-	nums := []int{4, 5, 1, 8, 3, 2, 9, 6, 7}
+	nums := make([]int, 30)
+	for i := range nums {
+		nums[i] = i
+	}
+	rand.Seed(time.Now().UnixNano())
+	rand.Shuffle(len(nums), func(i, j int) {
+		nums[i], nums[j] = nums[j], nums[i]
+	})
 	fmt.Println(nums)
 	fmt.Println(mergeSort(nums))
 }
