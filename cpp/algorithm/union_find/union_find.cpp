@@ -3,7 +3,7 @@
 using namespace std;
 
 /*
-  以下よりunion findを試してみる
+  以下よりunion findを試してみる。acが取れていることを確認している。
   https://atcoder.jp/contests/atc001/tasks/unionfind_a
 */
 
