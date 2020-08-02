@@ -19,7 +19,7 @@ bool same(int* root, int x, int y) {
 }
 
 void unite(int* root, int x, int y) {
-  find(root, x);
+  x = find(root, x);
   root[x] = find(root, y);
 }
 
