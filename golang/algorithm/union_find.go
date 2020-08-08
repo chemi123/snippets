@@ -53,7 +53,7 @@ func (uf *UnionFind) IsSame(x, y int) bool {
 }
 
 func (uf *UnionFind) Size(x int) int {
-	return -uf.FindRoot(uf.parent[x])
+	return -uf.parent[uf.FindRoot(x)]
 }
 
 func (uf UnionFind) GroupNum() int {
