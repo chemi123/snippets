@@ -45,9 +45,10 @@ public:
     return -_parent[root(x)];
   }
 
-  int groupNum() {
+  int groups() {
     int res = 0;
-    for (size_t i = 0; i < _parent.size(); ++i) {
+    // 要素が0から始まるか1から始まるかによって初期値が0か1かで変わる
+    for (size_t i = 1; i < _parent.size(); ++i) {
       if (_parent.at(i) < 0) {
         ++res;
       }
