@@ -13,17 +13,17 @@ public:
   UnionFind(int n) : _parent(std::vector<int>(n, -1)) {
   }
 
-  int findRoot(int x) {
+  int root(int x) {
     if (_parent[x] < 0) {
       return x;
     }
-    _parent[x] = findRoot(_parent[x]);
+    _parent[x] = root(_parent[x]);
     return _parent[x];
   }
 
   void unite(int x, int y) {
-    x = findRoot(x);
-    y = findRoot(y);
+    x = root(x);
+    y = root(y);
 
     if (x == y) {
       return;
@@ -38,14 +38,14 @@ public:
   }
 
   bool isSame(int x, int y) {
-    return findRoot(x) == findRoot(y);
+    return root(x) == root(y);
   }
 
-  bool getSize(int x) {
-    return -_parent[findRoot(x)];
+  int size(int x) {
+    return -_parent[root(x)];
   }
 
-  int getGroupNum() {
+  int groupNum() {
     int res = 0;
     for (size_t i = 0; i < _parent.size(); ++i) {
       if (_parent.at(i) < 0) {
