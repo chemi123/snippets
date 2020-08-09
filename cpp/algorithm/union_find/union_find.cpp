@@ -29,7 +29,7 @@ public:
       return;
     }
 
-    if (_parent[x] > _parent[y]) {
+    if (size(x) > size(y)) {
       swap(x, y);
     }
 
@@ -37,7 +37,7 @@ public:
     _parent[y] = x;
   }
 
-  bool isSame(int x, int y) {
+  bool same(int x, int y) {
     return root(x) == root(y);
   }
 
@@ -70,7 +70,7 @@ int main() {
     if (query == 0) {
       uf.unite(x, y);
     } else {
-      cout << (uf.isSame(x, y) ? "Yes" : "No") << endl;
+      cout << (uf.same(x, y) ? "Yes" : "No") << endl;
     }
   }
   return 0;
