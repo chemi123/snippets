@@ -3,6 +3,8 @@
 
 using namespace std;
 
+// mapやsetでpairをキーとするやり方
+
 struct phash{
   inline size_t operator()(const pair<int,int> & p) const{
     const auto h1 = hash<int>()(p.first);

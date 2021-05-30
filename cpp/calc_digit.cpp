@@ -3,6 +3,8 @@
 
 using namespace std;
 
+// 桁数を求める
+
 int main() {
   int num = 1;
   cout << num << ": " << floor(log10(num)) + 1 << endl;
